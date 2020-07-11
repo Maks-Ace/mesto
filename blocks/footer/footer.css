@@ -1,0 +1,21 @@
+@import url("./__copyright/footer__copyright.css");
+.footer {
+  align-self: flex-start;
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    margin-top: 44px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 36px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .footer {
+    margin-left: 200px;
+    margin-bottom: 60px;
+    margin-top: 64px;
+  }
+}

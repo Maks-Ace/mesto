@@ -1,0 +1,27 @@
+.profile__add-button {
+  background-color: #000000;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  border-radius: 2px;
+  background-image: url("../../../images/plus_signe.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  align-self: center;
+  justify-self: end;
+  height: 50px;
+}
+
+@media screen and (max-width: 768px) {
+  .profile__add-button {
+    width: 100%;
+    margin-top: 32px;
+    background-size: 16px 16px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .profile__add-button {
+    width: 150px;
+    background-size: 22px 22px;
+  }
+}

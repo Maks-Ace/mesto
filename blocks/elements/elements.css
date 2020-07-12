@@ -8,7 +8,7 @@
     margin-left: 20px;
     margin-right: 20px;
     grid-template-columns: 1fr;
-    grid-row-gap: 20px;
+    grid-row-gap: 18px;
   }
 }
 
@@ -19,6 +19,6 @@
     margin-top: 52px;
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: 18px;
-    grid-row-gap: 22px;
+    grid-row-gap: 18px;
   }
 }

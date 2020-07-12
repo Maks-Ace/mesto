@@ -5,6 +5,7 @@
   background-position: center;
   align-self: initial;
   border: 1px solid #ffffff;
+  cursor: pointer;
 }
 
 .profile__edit-button:hover {

@@ -1,3 +1,31 @@
-.popup__close-button{
-height: 10px;
+.popup__close-button {
+  height: 42px;
+  width: 42px;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url("../../../images/plus_signe.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  transform: rotate(45deg);
+}
+
+.popup__close-button:hover {
+  opacity: 0.6;
+  transition: 0.2s;
+}
+
+@media screen and (max-width: 512px) {
+  .popup__close-button {
+    right: 0;
+    top: -48px;
+  }
+}
+
+@media screen and (min-width: 512px) {
+  .popup__close-button {
+    top: -40px;
+    right: -38px;
+  }
 }

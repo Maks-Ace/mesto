@@ -1,6 +1,6 @@
 // Объявление переменных
 let popup = document.querySelector(".popup");
-let editButoon = document.querySelector(".profile__edit-button");
+let editButton = document.querySelector(".profile__edit-button");
 let nameValue = document.querySelector('.profile__name');
 let activityValue = document.querySelector('.profile__activity');
 let nameInput = document.querySelector('.popup__input_name');
@@ -9,10 +9,10 @@ let formElement = document.querySelector('.popup__container');
 let closeButton = document.querySelector('.popup__close-button');
 
 // Объявление функций
-
-function pageLoad() {
+function openForm() {
   nameInput.value = nameValue.textContent;
   activityInput.value = activityValue.textContent;
+  popup.classList.add('popup_opened');
 }
 
 function closeForm() {
@@ -32,14 +32,9 @@ function formSubmitHandler(evt) {
 
 // Обработка событий
 
-editButoon.addEventListener('click', function () {
-  popup.classList.add('popup_opened');
-});
+editButton.addEventListener('click', openForm);
 
 formElement.addEventListener('submit', formSubmitHandler);
 
 closeButton.addEventListener('click', closeForm);
 
-
-// Вызов функции при каждой загрузке страницы
-pageLoad();

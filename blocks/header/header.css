@@ -1,9 +1,11 @@
 @import url("./__logo/header__logo.css");
 .header {
   border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+  margin-left: auto;
+  margin-right: auto;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 638px) {
   .header {
     margin-top: 28px;
     padding-bottom: 32px;
@@ -11,12 +13,25 @@
   }
 }
 
-@media screen and (min-width: 769px) {
+
+@media screen and (min-width: 640px) {
   .header {
     margin-top: 45px;
     margin-bottom: 40px;
+    padding-bottom: 36px;
+    min-width: 600px;
+  }
+}
+
+@media screen and (min-width: 960px){
+  .header{
+    min-width: 878px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .header {
     margin-left: 200px;
     margin-right: 200px;
-    padding-bottom: 36px;
   }
 }

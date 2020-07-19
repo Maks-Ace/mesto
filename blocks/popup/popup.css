@@ -2,6 +2,7 @@
 @import url("./__header/popup__header.css");
 @import url("./__close-button/popup__close-button.css");
 @import url("./__input/popup__input.css");
+@import url("./_name/popup__input_name.css");
 @import url("./__submit-button/popup__submit-button.css");
 .popup {
   position: fixed;
@@ -12,5 +13,4 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   justify-content: center;
-}
 }

@@ -1,0 +1,12 @@
+.element__image-button {
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  height: 280px;
+  overflow: hidden;
+}
+
+.element__image-button:hover {
+  opacity: 0.6;
+  transition: 0.2s;
+}

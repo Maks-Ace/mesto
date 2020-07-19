@@ -1,4 +1,4 @@
 .element__image {
-  height: 280px;
   object-fit: cover;
+  height: 100%;
 }

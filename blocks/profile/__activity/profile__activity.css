@@ -2,19 +2,26 @@
   display: block;
   margin: 0;
   font-weight: normal;
+  width: 100%;
+  text-align: center;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 639px) {
   .profile__activity {
     font-size: 14px;
     line-height: 17px;
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 640px) {
   .profile__activity {
-    width: 100%;
     font-size: 18px;
     line-height: 22px;
+  }
+}
+
+@media screen and (min-width: 960px){
+  .profile__activity{
+    text-align: start;
   }
 }

@@ -8,7 +8,7 @@
   display: grid;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 959px) {
   .profile {
     margin-left: 20px;
     margin-right: 20px;
@@ -16,10 +16,18 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 960px) {
   .profile {
     align-items: center;
-    grid-template-columns: repeat(3, auto);
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 872px;
+    grid-template-columns: min-content auto min-content;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .profile {
     margin-left: 200px;
     margin-right: 200px;
   }

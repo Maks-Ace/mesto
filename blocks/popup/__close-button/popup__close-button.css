@@ -3,6 +3,7 @@
   width: 42px;
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0);
+  border: none;
   background-image: url("../../../images/plus_signe.svg");
   background-position: center;
   background-repeat: no-repeat;

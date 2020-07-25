@@ -1,0 +1,19 @@
+.element__like-button {
+  margin-top: 4px;
+  justify-self: center;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgba(0,0,0,0);
+  align-self: flex-start;
+}
+
+.element__like-button:hover {
+  opacity: 0.6;
+  transition: 0.2s;
+}
+
+.element__like-button:focus {
+  outline: none;
+}

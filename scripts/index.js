@@ -8,6 +8,37 @@ let activityInput = document.querySelector('.popup__input_activity');
 let formElement = document.querySelector('.popup__container');
 let closeButton = document.querySelector('.popup__close-button');
 
+
+// Начальный массив карточек
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+
+
 // Объявление функций
 function openForm() {
   nameInput.value = nameValue.textContent;
@@ -29,6 +60,22 @@ function formSubmitHandler(evt) {
   closeForm();
 }
 
+// Добавление новой карточки
+function addCard(name, link) {
+  // Список карточек
+  const elementsList = document.querySelector('.elements');
+
+  // карточка из шаблона
+  const cardTemplate = document.querySelector("#card-template").content;
+  const newCard = cardTemplate.cloneNode(true);
+
+  newCard.querySelector('.element__title').textContent = name;
+  newCard.querySelector('.element__image').src = link;
+
+  //добавляем карту на страницу
+  elementsList.append(newCard);
+}
+
 
 // Обработка событий
 
@@ -38,3 +85,7 @@ formElement.addEventListener('submit', formSubmitHandler);
 
 closeButton.addEventListener('click', closeForm);
 
+// При загрузке страницы заполнить стандартные карты
+initialCards.forEach((cardData)=> {
+  addCard(cardData.name, cardData.link);
+})

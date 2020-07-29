@@ -1,13 +1,15 @@
 // Объявление переменных
-let popup = document.querySelector(".popup");
-let editButton = document.querySelector(".profile__edit-button");
-let nameValue = document.querySelector('.profile__name');
-let activityValue = document.querySelector('.profile__activity');
-let formFirstLine = document.querySelector('.popup__input_line-one');
-let formSecondLine = document.querySelector('.popup__input_line-two');
-let formElement = document.querySelector('.popup__container');
-let closeButton = document.querySelector('.popup__close-button');
-let cardAddButton = document.querySelector('.profile__add-button');
+const popup = document.querySelector(".popup");
+const editButton = document.querySelector(".profile__edit-button");
+const nameValue = document.querySelector('.profile__name');
+const activityValue = document.querySelector('.profile__activity');
+const formFirstLine = document.querySelector('.popup__input_line-one');
+const formSecondLine = document.querySelector('.popup__input_line-two');
+const formElement = document.querySelector('.popup__container');
+const closeButton = document.querySelector('.popup__close-button');
+const cardAddButton = document.querySelector('.profile__add-button');
+
+
 
 
 // Начальный массив карточек
@@ -39,6 +41,12 @@ const initialCards = [
 ];
 
 
+// При загрузке страницы заполнить стандартные карты
+initialCards.forEach((cardData) => {
+  addCard(cardData.name, cardData.link);
+})
+
+
 //
 // Обработка событий
 //
@@ -51,12 +59,11 @@ closeButton.addEventListener('click', closeForm);
 
 formElement.addEventListener('submit', formSubmitHandler);
 
+document.addEventListener('click', likeCardAction);
 
 
-// При загрузке страницы заполнить стандартные карты
-initialCards.forEach((cardData) => {
-  addCard(cardData.name, cardData.link);
-})
+
+
 
 
 
@@ -64,7 +71,7 @@ initialCards.forEach((cardData) => {
 // Объявление функций
 //
 
-// Открытие формы
+//  Фукнция открытие формы
 function openForm(form_header, first_line, second_line, type) {
 
   popup.querySelector('.popup__header').textContent = form_header;
@@ -75,7 +82,7 @@ function openForm(form_header, first_line, second_line, type) {
     submitButton.textContent = 'Сохранить';
     popup.querySelector('.popup__container').classList.add('profile-edit');
   }
-  else if( type === 'new-card') {
+  else if (type === 'new-card') {
     formFirstLine.placeholder = first_line;
     formSecondLine.placeholder = second_line;
     submitButton.textContent = 'Создать'
@@ -85,7 +92,7 @@ function openForm(form_header, first_line, second_line, type) {
 
 }
 
-// Очистить форму
+// Функция очистить форму
 function clearForm() {
   formFirstLine.value = '';
   formFirstLine.placeholder = '';
@@ -94,7 +101,7 @@ function clearForm() {
 }
 
 
-// Закрытие формы
+// Функция закрытие формы
 function closeForm() {
   clearForm();
   popup.classList.remove('popup_opened');
@@ -102,16 +109,16 @@ function closeForm() {
   popup.querySelector('.popup__container').classList.remove('new-card');
 }
 
-// Обработка Отправки формы
+// Функция обработка Отправки формы
 function formSubmitHandler(evt) {
   evt.preventDefault(); // Отмена стандартной отправки формы
 
-  if (evt.target.classList.contains('profile-edit')){
+  if (evt.target.classList.contains('profile-edit')) {
     // Обновить значения на странице
     nameValue.textContent = formFirstLine.value;
     activityValue.textContent = formSecondLine.value;
   }
-  else if(evt.target.classList.contains('new-card')){
+  else if (evt.target.classList.contains('new-card')) {
     addCard(formFirstLine.value, formSecondLine.value);
   }
 
@@ -120,7 +127,7 @@ function formSubmitHandler(evt) {
 }
 
 
-// Добавление новой карточки
+// Функция добавление новой карточки
 function addCard(name, link) {
   // Список карточек
   const elementsList = document.querySelector('.elements');
@@ -134,4 +141,11 @@ function addCard(name, link) {
 
   //добавляем карту на страницу
   elementsList.prepend(newCard);
+}
+
+// Функция лайка
+function likeCardAction(event) {
+  if (event.target.classList.contains("element__like-button")) {
+    event.target.classList.toggle('element__like-button_liked')
+  }
 }

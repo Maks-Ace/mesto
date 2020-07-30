@@ -61,6 +61,8 @@ formElement.addEventListener('submit', formSubmitHandler);
 
 document.addEventListener('click', likeCardAction);
 
+document.addEventListener('click', deleteCard);
+
 
 
 
@@ -141,6 +143,13 @@ function addCard(name, link) {
 
   //добавляем карту на страницу
   elementsList.prepend(newCard);
+}
+
+// Функция удаления карточки
+function deleteCard(event) {
+  if (event.target.classList.contains('element__delete-button')) {
+    event.target.closest('.element').remove();
+  }
 }
 
 // Функция лайка

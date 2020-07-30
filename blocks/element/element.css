@@ -3,6 +3,7 @@
 @import url("./__image/element__image.css");
 @import url("./__info/element__info.css");
 @import url("./__title/element__title.css");
+@import url("./__delete-button/element__delete-button.css");
 .element {
   height: 362px;
   max-width: 282px;
@@ -14,4 +15,5 @@
   overflow: hidden;
   align-content: center;
   justify-self: center;
+  position: relative;
 }

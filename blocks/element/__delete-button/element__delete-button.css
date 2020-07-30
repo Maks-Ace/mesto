@@ -1,0 +1,18 @@
+.element__delete-button{
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  height: 20px;
+  width: 18px;
+  background-image: url("../../../images/bucket.svg");
+  background-color: rgba(0,0,0,0);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: none;
+  cursor: pointer;
+}
+
+.element__delete-button:focus{
+  outline: none;
+}

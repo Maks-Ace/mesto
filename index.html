@@ -37,13 +37,6 @@
       </section>
 
       <section class="popup">
-        <form class="popup__container">
-          <h2 class="popup__header"></h2>
-          <input type="text" class="popup__input popup__input_line-one">
-          <input type="text" class="popup__input popup__input_line-two">
-          <button type="submit" class="popup__submit-button"></button>
-          <button type="button" class="popup__close-button"></button>
-        </form>
       </section>
 
     </main>
@@ -63,6 +56,24 @@
         </button>
       </div>
     </li>
+  </template>
+
+  <template id='form-template'>
+    <form class="popup__container">
+      <h2 class="popup__header"></h2>
+      <input type="text" class="popup__input popup__input_line-one">
+      <input type="text" class="popup__input popup__input_line-two">
+      <button type="submit" class="popup__submit-button"></button>
+      <button type="button" class="popup__close-button"></button>
+    </form>
+  </template>
+
+  <template id='photo-template'>
+    <figure class="popup__figure">
+      <img src="" alt="" class="popup__figure-photo">
+      <figcaption class="popup__figure-caption"></figcaption>
+      <button type="button" class="popup__close-button"></button>
+    </figure>
   </template>
 
   <script src="./scripts/index.js"></script>

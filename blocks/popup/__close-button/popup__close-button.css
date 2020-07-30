@@ -1,6 +1,4 @@
 .popup__close-button {
-  height: 42px;
-  width: 42px;
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0);
   border: none;
@@ -9,8 +7,6 @@
   background-repeat: no-repeat;
   background-size: contain;
   position: absolute;
-  right: 0;
-  top: -48px;
   transform: rotate(45deg);
 }
 
@@ -19,13 +15,26 @@
   transition: 0.2s;
 }
 
-.popup__close-button:focus{
+.popup__close-button:focus {
   outline: none;
+}
+
+@media screen and (max-width: 512px) {
+  .popup__close-button {
+    height: 30px;
+    width: 30px;
+    right: -30px;
+    top: -30px;
+  }
 }
 
 @media screen and (min-width: 512px) {
   .popup__close-button {
+    right: 0;
+    top: -48px;
     top: -40px;
     right: -38px;
+    height: 42px;
+    width: 42px;
   }
 }

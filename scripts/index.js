@@ -3,10 +3,6 @@ const popup = document.querySelector(".popup");
 const editButton = document.querySelector(".profile__edit-button");
 const nameValue = document.querySelector('.profile__name');
 const activityValue = document.querySelector('.profile__activity');
-const formFirstLine = document.querySelector('.popup__input_line-one');
-const formSecondLine = document.querySelector('.popup__input_line-two');
-const formElement = document.querySelector('.popup__container');
-const closeButton = document.querySelector('.popup__close-button');
 const cardAddButton = document.querySelector('.profile__add-button');
 
 
@@ -55,17 +51,15 @@ editButton.addEventListener('click', () => { openForm('Редактироват�
 
 cardAddButton.addEventListener('click', () => { openForm('Новое место', 'Название', 'Ссылка на картинку', 'new-card') });
 
-closeButton.addEventListener('click', closeForm);
+document.addEventListener('click', closeForm);
 
-formElement.addEventListener('submit', formSubmitHandler);
+document.addEventListener('submit', formSubmitHandler);
 
 document.addEventListener('click', likeCardAction);
 
 document.addEventListener('click', deleteCard);
 
-
-
-
+document.addEventListener('click', openPhoto);
 
 
 
@@ -76,39 +70,41 @@ document.addEventListener('click', deleteCard);
 //  Фукнция открытие формы
 function openForm(form_header, first_line, second_line, type) {
 
-  popup.querySelector('.popup__header').textContent = form_header;
-  const submitButton = popup.querySelector('.popup__submit-button');
+  popupClean();
+
+  // Скопировать и добавить шаблон
+  const containerTemplate = document.querySelector('#form-template').content;
+  const newForm = containerTemplate.cloneNode(true);
+
+  newForm.querySelector('.popup__header').textContent = form_header;
+  const formElement = newForm.querySelector('.popup__container');
+  const submitButton = newForm.querySelector('.popup__submit-button');
+  const formFirstLine = newForm.querySelector('.popup__input_line-one');
+  const formSecondLine = newForm.querySelector('.popup__input_line-two');
+
   if (type === 'edit') {
     formFirstLine.value = first_line;
     formSecondLine.value = second_line;
     submitButton.textContent = 'Сохранить';
-    popup.querySelector('.popup__container').classList.add('profile-edit');
+    formElement.classList.add('profile-edit');
   }
   else if (type === 'new-card') {
     formFirstLine.placeholder = first_line;
     formSecondLine.placeholder = second_line;
     submitButton.textContent = 'Создать'
-    popup.querySelector('.popup__container').classList.add('new-card');
+    formElement.classList.add('new-card');
   }
+  popup.append(newForm);
   popup.classList.add('popup_opened');
-
 }
 
-// Функция очистить форму
-function clearForm() {
-  formFirstLine.value = '';
-  formFirstLine.placeholder = '';
-  formSecondLine.value = '';
-  formSecondLine.placeholder = '';
-}
 
 
 // Функция закрытие формы
-function closeForm() {
-  clearForm();
-  popup.classList.remove('popup_opened');
-  popup.querySelector('.popup__container').classList.remove('profile-edit');
-  popup.querySelector('.popup__container').classList.remove('new-card');
+function closeForm(evt) {
+  if (evt.target.classList.contains('popup__close-button') || evt.target.classList.contains('popup__submit-button')) {
+    popup.classList.remove('popup_opened');
+  }
 }
 
 // Функция обработка Отправки формы
@@ -117,15 +113,15 @@ function formSubmitHandler(evt) {
 
   if (evt.target.classList.contains('profile-edit')) {
     // Обновить значения на странице
-    nameValue.textContent = formFirstLine.value;
-    activityValue.textContent = formSecondLine.value;
+    nameValue.textContent = evt.target.querySelector('.popup__input_line-one').value;
+    activityValue.textContent = evt.target.querySelector('.popup__input_line-two').value;
   }
   else if (evt.target.classList.contains('new-card')) {
-    addCard(formFirstLine.value, formSecondLine.value);
+    addCard(evt.target.querySelector('.popup__input_line-one').value, evt.target.querySelector('.popup__input_line-two').value);
   }
 
   // Закрыть форму
-  closeForm();
+  closeForm(evt);
 }
 
 
@@ -153,8 +149,38 @@ function deleteCard(event) {
 }
 
 // Функция лайка
-function likeCardAction(event) {
-  if (event.target.classList.contains("element__like-button")) {
-    event.target.classList.toggle('element__like-button_liked')
+function likeCardAction(evt) {
+  if (evt.target.classList.contains("element__like-button")) {
+    evt.target.classList.toggle('element__like-button_liked')
   }
+}
+
+// Функция открытия фото
+function openPhoto(evt) {
+
+  if (evt.target.classList.contains("element__image")) {
+
+    popupClean();
+
+    // Получить ссылку и подпись
+    const link = evt.target.src;
+    const caption = evt.target.closest('.element').querySelector('.element__title').textContent;
+
+    // создать из шаблона копию
+    const photoTemplate = document.querySelector('#photo-template').content;
+    const newPhotoFigure = photoTemplate.cloneNode(true);
+
+    //заполнить данные
+    newPhotoFigure.querySelector('.popup__figure-photo').src = link;
+    newPhotoFigure.querySelector('.popup__figure-caption').textContent = caption;
+
+    // добавить в попап и открыть его
+    popup.append(newPhotoFigure);
+    popup.classList.add('popup_opened');
+  }
+}
+
+// Функция очистить попап
+function popupClean() {
+  popup.innerHTML = ''
 }

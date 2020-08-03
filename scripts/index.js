@@ -150,6 +150,21 @@ function closeButtonHandler(evt) {
   }
 }
 
+function formCloseOnEscape(evt) {
+  if (evt.key === 'Escape') {
+    const activeForm = document.querySelector('.popup__active-element');
+    if (activeForm) {
+      popupClose(activeForm);
+    }
+  }
+}
+
+function formCloseOnOverlay(evt) {
+  if (evt.target.classList.contains('popup_opened')) {
+    popupClose(evt.target.querySelector('.popup__active-element'));
+  }
+}
+
 
 //
 // Обработка событий
@@ -160,6 +175,8 @@ cardAddButton.addEventListener('click', showNewCardPopup);
 document.addEventListener('click', closeButtonHandler);
 newPlaceForm.addEventListener('submit', newCardSubmitHandler);
 profileForm.addEventListener('submit', profileSubmitHandler);
+document.addEventListener('keydown', formCloseOnEscape);
+document.addEventListener('click', formCloseOnOverlay);
 
 
 //

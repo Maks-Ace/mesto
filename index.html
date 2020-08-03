@@ -36,18 +36,19 @@
       </section>
 
       <section class="popup">
-        <form class="popup__container" id="profile_form">
+        <form class="popup__container" id="profile_form" novalidate>
           <h2 class="popup__header">Редактировать профиль</h2>
-          <input type="text" class="popup__input popup__input_line-one">
-          <input type="text" class="popup__input popup__input_line-two">
+          <input type="text" class="popup__input popup__input_line-one" required>
+          <p class="popup__input-line-one-error"></p>
+          <input type="text" class="popup__input popup__input_line-two" required>
           <button type="submit" class="popup__submit-button">Сохранить</button>
           <button type="button" class="popup__close-button"></button>
         </form>
 
-        <form class="popup__container" id="new_place_form">
+        <form class="popup__container" id="new_place_form" novalidate>
           <h2 class="popup__header">Новое место</h2>
-          <input type="text" placeholder="Название" class="popup__input popup__input_line-one">
-          <input type="text" placeholder="Ссылка на картинку" class="popup__input popup__input_line-two">
+          <input type="text" placeholder="Название" class="popup__input popup__input_line-one" required>
+          <input type="url" placeholder="Ссылка на картинку" class="popup__input popup__input_line-two" required>
           <button type="submit" class="popup__submit-button">Создать</button>
           <button type="button" class="popup__close-button"></button>
         </form>
@@ -79,6 +80,7 @@
     </li>
   </template>
 
+  <script src="./scripts/validate.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 

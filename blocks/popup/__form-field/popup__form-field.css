@@ -1,0 +1,21 @@
+.popup__form-field {
+  display: flex;
+  flex-direction: column;
+  min-height: 48px;
+}
+
+@media screen and (max-width: 512px) {
+  .popup__form-field {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 8px;
+  }
+}
+
+@media screen and (min-width: 512px) {
+  .popup__form-field {
+    margin-left: 34px;
+    margin-right: 34px;
+    margin-bottom: 10px;
+  }
+}

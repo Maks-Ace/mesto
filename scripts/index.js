@@ -1,3 +1,4 @@
+
 // Объявление переменных
 const popup = document.querySelector(".popup");
 const profileEditButton = document.querySelector(".profile__edit-button");
@@ -16,8 +17,6 @@ const profileFormLineTwo = profileForm.querySelector('.popup__input_line-two');
 const newPlaceForm = document.querySelector('#new_place_form');
 const newPlaceFormLineOne = newPlaceForm.querySelector('.popup__input_line-one');
 const newPlaceFormLineTwo = newPlaceForm.querySelector('.popup__input_line-two');
-
-const formSubmitButton = document.querySelector(".popup__submit-button");
 
 const cardTemplate = document.querySelector("#card-template");
 const elementsList = document.querySelector('.elements');
@@ -57,11 +56,13 @@ const initialCards = [
 
 // Функция отобразить popup
 function popupOpen() {
+  document.addEventListener('keydown', formCloseOnEscape);
   popup.classList.add('popup_opened');
 }
 
 // Функция закрыть попап
 function popupClose(element) {
+  document.removeEventListener('keydown', formCloseOnEscape);
   element.closest('.popup__active-element').classList.remove('popup__active-element');
   popup.classList.remove('popup_opened');
 }
@@ -70,14 +71,17 @@ function popupClose(element) {
 function showPhotoPopup(data) {
   popupPhotoCaption.textContent = data.name;
   popupPhoto.src = data.link;
+  popupPhoto.alt = `фото - ${data.name}`;
   popupPhotoFigure.classList.add('popup__active-element');
   popupOpen();
 }
 
 // Функция отображает попап с настройкой профиля
 function showProfilePopup() {
+  const inputList = profileForm.querySelectorAll('.popup__input');
   profileFormLineOne.value = nameValue.textContent;
   profileFormLineTwo.value = activityValue.textContent;
+  prepareForm(profileForm);
   profileForm.classList.add('popup__active-element');
   popupOpen();
 }
@@ -86,15 +90,29 @@ function showProfilePopup() {
 function showNewCardPopup() {
   newPlaceFormLineOne.value = '';
   newPlaceFormLineTwo.value = '';
+  prepareForm(newPlaceForm);
   newPlaceForm.classList.add('popup__active-element');
   popupOpen();
 }
 
-// Функция для очистки полей формы
-function clearFormFields() {
-  formFirstLine.value = '';
-  formSecondLine.value = '';
+function prepareForm(formElement) {
+  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
+  const errorList = Array.from(formElement.querySelectorAll('.popup__input-error'));
+  const submitButton = formElement.querySelector('.popup__submit-button');
+
+  toggleSubmitButtonState(inputList, submitButton, 'popup__submit-button_disabled', 'popup__input_type_error');
+
+  inputList.forEach(inputElement => {
+    inputElement.classList.remove('popup__input_type_error');
+  })
+
+  errorList.forEach((error) => {
+    error.textContent = "";
+    error.classList.remove('popup__input-error_active');
+  });
+
 }
+
 
 // Функция работы с карточкой
 function getCardElement(data) {
@@ -106,6 +124,7 @@ function getCardElement(data) {
 
   cardName.textContent = data.name;
   cardImage.src = data.link;
+  cardImage.alt = `фото - ${data.name}`;
 
   likeButton.addEventListener('click', likeCardAction);
   deleteButton.addEventListener('click', deleteCard);
@@ -133,14 +152,14 @@ function likeCardAction(evt) {
 
 function profileSubmitHandler(evt) {
   evt.preventDefault();
-  nameValue.textContent = evt.target.querySelector('.popup__input_line-one').value;
-  activityValue.textContent = evt.target.querySelector('.popup__input_line-two').value;
+  nameValue.textContent = profileFormLineOne.value;
+  activityValue.textContent = profileFormLineTwo.value;
   popupClose(evt.target)
 }
 
 function newCardSubmitHandler(evt) {
   evt.preventDefault();
-  addCard(evt.target.querySelector('.popup__input_line-one').value, evt.target.querySelector('.popup__input_line-two').value);
+  addCard(newPlaceFormLineOne.value, newPlaceFormLineTwo.value);
   popupClose(evt.target)
 }
 
@@ -175,7 +194,7 @@ cardAddButton.addEventListener('click', showNewCardPopup);
 document.addEventListener('click', closeButtonHandler);
 newPlaceForm.addEventListener('submit', newCardSubmitHandler);
 profileForm.addEventListener('submit', profileSubmitHandler);
-document.addEventListener('keydown', formCloseOnEscape);
+
 document.addEventListener('click', formCloseOnOverlay);
 
 

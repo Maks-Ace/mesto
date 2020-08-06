@@ -1,11 +1,3 @@
-// Объявление глобальных переменных
-const profileF = document.querySelector('#profile_form');
-const profileF_input = profileF.querySelector('#name-input');
-
-// Закончил на том, что всем формам добавляются проверки, и теперь делаю сабмит кнопку блокирую ее
-// Не ясно еще куда там disabled добавить, а еще тогл кнопки срабатывает на загатовке формы, когда она еще пустая лежит на стрнице
-
-
 //
 // Объявление функций
 //
@@ -39,7 +31,6 @@ function hideInputError(formElement, inputElement, inputErrorClass, errorClass) 
 function setEventListeners(formElement, inputSelector, errorClass, submitButtonSelector, inactiveButtonClass, inputErrorClass) {
   const inputList = Array.from(formElement.querySelectorAll(inputSelector));
   const submitButton = formElement.querySelector(submitButtonSelector);
-
 
   toggleSubmitButtonState(inputList, submitButton, inactiveButtonClass, inputErrorClass)
 

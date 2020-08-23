@@ -28,24 +28,22 @@
         <button type="button" class="profile__add-button"></button>
       </section>
 
-
       <section>
         <ul class="elements">
         </ul>
-
       </section>
 
       <section class="popup">
         <form class="popup__container" id="profile_form" novalidate>
           <h2 class="popup__header">Редактировать профиль</h2>
           <label class="popup__form-field">
-            <input type="text" value="предварительное значение" class="popup__input popup__input_line-one" id="name-input" minlength="2" maxlength="40"
-              required>
+            <input type="text" value="предварительное значение" class="popup__input popup__input_line-one"
+              id="name-input" minlength="2" maxlength="40" required>
             <span class="popup__input-error" id="name-input-error"></span>
           </label>
           <label class="popup__form-field">
-            <input type="text" value="предварительное значение" class="popup__input popup__input_line-two" id="activity-input" minlength="2"
-              maxlength="200" required>
+            <input type="text" value="предварительное значение" class="popup__input popup__input_line-two"
+              id="activity-input" minlength="2" maxlength="200" required>
             <span class="popup__input-error" id="activity-input-error"></span>
           </label>
           <button type="submit" class="popup__submit-button">Сохранить</button>
@@ -83,7 +81,7 @@
     </footer>
   </div>
 
-  <template id="card-template">
+  <template class="card-template" id="card-template">
     <li class="element">
       <img src="" alt="" class="element__image">
       <button type="button" class="element__delete-button"></button>
@@ -95,8 +93,8 @@
     </li>
   </template>
 
-  <script src="./scripts/validate.js"></script>
-  <script src="./scripts/index.js"></script>
+  <script type="module" src="./scripts/validate.js"></script>
+  <script type="module" src="./scripts/index.js"></script>
 </body>
 
 </html>

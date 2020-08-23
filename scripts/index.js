@@ -77,7 +77,6 @@ export function showPhotoPopup(data) {
 
 // Функция отображает попап с настройкой профиля
 function showProfilePopup() {
-  const inputList = profileForm.querySelectorAll('.popup__input');
   profileFormLineOne.value = nameValue.textContent;
   profileFormLineTwo.value = activityValue.textContent;
   profileForm.reset();
@@ -91,6 +90,7 @@ function showProfilePopup() {
 function showNewCardPopup() {
   newPlaceFormLineOne.value = '';
   newPlaceFormLineTwo.value = '';
+  newPlaceForm.reset();
   newPlaceForm.classList.add("popup__active-element");
   popupOpen();
 }

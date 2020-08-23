@@ -1,4 +1,3 @@
-
 import FormValidator from './FormValidator.js';
 
 // Глобальный объект с параметрами

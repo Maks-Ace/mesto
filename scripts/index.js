@@ -1,5 +1,5 @@
 import Card from './Card.js';
-import paramObj from './validate.js';
+import FormValidator from './FormValidator.js';
 
 // Объявление переменных
 const popup = document.querySelector(".popup");
@@ -7,10 +7,6 @@ const profileEditButton = document.querySelector(".profile__edit-button");
 const cardAddButton = document.querySelector(".profile__add-button");
 const nameValue = document.querySelector(".profile__name");
 const activityValue = document.querySelector(".profile__activity");
-
-const popupPhotoFigure = document.querySelector(".popup__figure");
-const popupPhoto = document.querySelector(".popup__figure-photo");
-const popupPhotoCaption = document.querySelector(".popup__figure-caption");
 
 const profileForm = document.querySelector("#profile_form");
 const profileFormLineOne = profileForm.querySelector(".popup__input_line-one");
@@ -49,15 +45,19 @@ const initialCards = [{
 },
 ];
 
+// Глобальный объект с параметрами
+export const paramObj = {
+  formSelector: ".popup__container",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__submit-button",
+  inactiveButtonClass: "popup__submit-button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__input-error_active",
+};
+
 //
 // Объявление функций
 //
-
-// Функция отобразить popup
-export function popupOpen() {
-  document.addEventListener("keydown", formCloseOnEscape);
-  popup.classList.add("popup_opened");
-}
 
 // Функция закрыть попап
 function popupClose(element) {
@@ -66,14 +66,6 @@ function popupClose(element) {
   popup.classList.remove("popup_opened");
 }
 
-// Функция отображает фотографию в попапе
-export function showPhotoPopup(data) {
-  popupPhotoCaption.textContent = data.name;
-  popupPhoto.src = data.link;
-  popupPhoto.alt = `фото - ${data.name}`;
-  popupPhotoFigure.classList.add("popup__active-element");
-  popupOpen();
-}
 
 // Функция отображает попап с настройкой профиля
 function showProfilePopup() {
@@ -88,6 +80,7 @@ function showProfilePopup() {
 
 // Функция отобразить попап новая карточка
 function showNewCardPopup() {
+  // если не задать пустые строки, то при проверке для сброса кнопки submit после первого закрытия, она остается активной
   newPlaceFormLineOne.value = '';
   newPlaceFormLineTwo.value = '';
   newPlaceForm.reset();
@@ -119,6 +112,13 @@ function closeButtonHandler(evt) {
   }
 }
 
+// Функция отобразить popup
+export function popupOpen() {
+  document.addEventListener("keydown", formCloseOnEscape);
+  popup.classList.add("popup_opened");
+}
+
+// Функция закрытия формы по нажатию escape
 function formCloseOnEscape(evt) {
   if (evt.key === "Escape") {
     const activeForm = document.querySelector(".popup__active-element");
@@ -137,7 +137,6 @@ function formCloseOnOverlay(evt) {
 //
 // Обработка событий
 //
-
 profileEditButton.addEventListener("click", showProfilePopup);
 cardAddButton.addEventListener("click", showNewCardPopup);
 document.addEventListener("click", closeButtonHandler);
@@ -148,7 +147,15 @@ document.addEventListener("click", formCloseOnOverlay);
 //
 // При загрузке страницы заполнить стандартные карты
 //
-
 initialCards.forEach((cardData) => {
   addCard(cardData.name, cardData.link);
 });
+
+//
+// Включение валидации при загрузке страницы
+//
+const formList = Array.from(document.querySelectorAll('.popup__container'));
+formList.forEach(formElement => {
+  const formClassElement = new FormValidator(paramObj, formElement);
+  formClassElement.enableValidation();
+})

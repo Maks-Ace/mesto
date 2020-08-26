@@ -1,5 +1,6 @@
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
+import { popupOpen, formCloseOnEscape } from './utils.js';
 
 // Объявление переменных
 const popup = document.querySelector(".popup");
@@ -109,22 +110,6 @@ function newCardSubmitHandler(evt) {
 function closeButtonHandler(evt) {
   if (evt.target.classList.contains("popup__close-button")) {
     popupClose(evt.target);
-  }
-}
-
-// Функция отобразить popup
-export function popupOpen() {
-  document.addEventListener("keydown", formCloseOnEscape);
-  popup.classList.add("popup_opened");
-}
-
-// Функция закрытия формы по нажатию escape
-function formCloseOnEscape(evt) {
-  if (evt.key === "Escape") {
-    const activeForm = document.querySelector(".popup__active-element");
-    if (activeForm) {
-      popupClose(activeForm);
-    }
   }
 }
 

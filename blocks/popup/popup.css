@@ -13,6 +13,7 @@
 @import url("./__input-error/_active/popup__input-error_active.css");
 @import url("./__submit-button/_disabled/popup__submit-button_disabled.css");
 @import url("./__input/_type_error/popup__input_type_error.css");
+@import url("./__figure-fig/popup__figure-fig.css");
 .popup {
   position: fixed;
   display: flex;
